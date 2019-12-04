@@ -1,0 +1,28 @@
+{
+  "name": "fetch-images-service",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "NODE_ENV=test nyc --check-coverage --statements 80 --branches 80 --functions 80 --lines 80 ava --verbose",
+    "lint": "eslint service/**/*.js test/**/*.js",
+    "data": "node scrapper.js && node db.js > site/static/export.json && exit 0",
+    "start": "micro service",
+    "dev": "micro-dev service"
+  },
+  "author": "@fhoehl",
+  "license": "MIT",
+  "dependencies": {
+    "ioredis": "^4.14.1",
+    "micro": "^9.3.4",
+    "puppeteer": "^2.0.0"
+  },
+  "devDependencies": {
+    "ava": "^2.4.0",
+    "nyc": "^14.1.1",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.5",
+    "sinon": "^7.5.0",
+    "test-listen": "^1.1.0"
+  }
+}
