@@ -11,7 +11,18 @@ const findImageUrlsFromUrl = async (url) => {
     return cached;
   }
 
-  const browser = await puppeteer.launch({ headless: true });
+  const puppeteerArgs = [];
+
+  if (process.env.PUPPETER_DISABLE_DEV_SHM) {
+    puppeteerArgs.push('--disable-dev-shm-usage');
+  }
+
+  const browser = await puppeteer.launch({
+    headless: true,
+    executablePath: process.env.CHROMIUM_PATH,
+    args: puppeteerArgs,
+  });
+
   const page = await browser.newPage();
   const imageUrls = [];
 

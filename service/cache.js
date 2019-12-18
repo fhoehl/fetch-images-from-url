@@ -1,9 +1,7 @@
 const Redis = require('ioredis');
 
-const redis = new Redis({
-  port: 6379,
-  host: 'redis',
-});
+const REDIS_URL = process.env.REDIS_URL || 'redis://localhost:6379';
+const redis = new Redis(REDIS_URL);
 
 const CACHE_INVALIDATION = 1000;
 
